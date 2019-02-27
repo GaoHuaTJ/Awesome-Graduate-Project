@@ -34,13 +34,30 @@ namespace 毕业设计
             TrainBasicPicture trainBasicPicture = new TrainBasicPicture();//声明底图结构实例
             trainBasicPicture.Width = this.panelofPic.Size.Width;//底图结构的宽度
             trainBasicPicture.Height = this.panelofPic.Size.Height;//底图结构的高度
-            trainBasicPicture.TrainBasicPicturePos = new Point(this.panelofPic.Location.X + 10, this.panelofPic.Location.Y + 10);//将pictureBox的左上角坐标返回给底图结构对象
-            trainBasicPicture.DrawTrainBasicPicture(this.panelofPic.CreateGraphics());//初始化在pannel上面画图
+            trainBasicPicture.TrainBasicPicturePos =new Point(this.pictureBox1.Location.X+10, this.pictureBox1.Location.Y+10) ;
+            pictureBox1.BackgroundImage = trainBasicPicture.DrawTrainBasicPicture();//将返回的bitmap设置为picbox的背景图片
+
         }
 
+        private void panelofPic_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
 
     }
+    class pictureBox1 : PictureBox
+    {
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            base.OnPaint(pe);
+            Graphics dc = pe.Graphics;
+            Pen bluePen = new Pen(Color.Blue, 3);
+            dc.DrawRectangle(bluePen, 0, 0, 50, 50);
+            Pen redPen = new Pen(Color.Red, 2);
+            dc.DrawEllipse(redPen, 0, 50, 80, 60);
+        }
+    }
+
 
 
 }

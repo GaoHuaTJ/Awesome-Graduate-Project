@@ -32,9 +32,11 @@
             this.底图结构ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.生成底图结构ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelofPic = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panelofPic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -66,12 +68,24 @@
             // panelofPic
             // 
             this.panelofPic.AutoScroll = true;
+            this.panelofPic.Controls.Add(this.pictureBox1);
             this.panelofPic.Controls.Add(this.label1);
             this.panelofPic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelofPic.Location = new System.Drawing.Point(0, 28);
             this.panelofPic.Name = "panelofPic";
             this.panelofPic.Size = new System.Drawing.Size(902, 600);
             this.panelofPic.TabIndex = 5;
+            this.panelofPic.Paint += new System.Windows.Forms.PaintEventHandler(this.panelofPic_Paint);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(919, 600);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -98,6 +112,7 @@
             this.menuStrip1.PerformLayout();
             this.panelofPic.ResumeLayout(false);
             this.panelofPic.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,6 +124,7 @@
         private System.Windows.Forms.ToolStripMenuItem 生成底图结构ToolStripMenuItem;
         private System.Windows.Forms.Panel panelofPic;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

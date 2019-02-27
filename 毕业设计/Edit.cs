@@ -21,6 +21,8 @@ namespace 毕业设计
             Pen pen = new Pen(line.Color,line.Width);//定义画笔颜色
             graphics.DrawLine(pen, line.StartPoint, line.EndPoint);//画布上面画线
         }
+
+
     }
 
 }

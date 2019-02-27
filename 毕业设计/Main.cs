@@ -19,10 +19,15 @@ namespace 毕业设计
 
         private void 运行图绘制ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 TrainPicture = new Form1();
-            TrainPicture.TopLevel = false;//非常重要的一个步骤
-            TrainPicture.Parent = this;//设置绘图界面的窗口父窗口为当前窗口
-            TrainPicture.Show();
+            Form1 TrainPictureFrom = new Form1();
+            TrainPictureFrom.TopLevel = false;//非常重要的一个步骤
+            TrainPictureFrom.Parent = this;//设置绘图界面的窗口父窗口为当前窗口
+            TrainPictureFrom.Show();
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
