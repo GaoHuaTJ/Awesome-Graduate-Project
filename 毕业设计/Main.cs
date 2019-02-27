@@ -23,7 +23,9 @@ namespace 毕业设计
             TrainPictureFrom.TopLevel = false;//非常重要的一个步骤
             TrainPictureFrom.Parent = this;//设置绘图界面的窗口父窗口为当前窗口
             TrainPictureFrom.Show();
+
         }
+
 
         private void Main_Load(object sender, EventArgs e)
         {
