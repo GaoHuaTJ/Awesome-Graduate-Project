@@ -68,6 +68,8 @@
             // panelofPic
             // 
             this.panelofPic.AutoScroll = true;
+            this.panelofPic.AutoScrollMargin = new System.Drawing.Size(400, 100);
+            this.panelofPic.AutoScrollMinSize = new System.Drawing.Size(100, 100);
             this.panelofPic.Controls.Add(this.pictureBox1);
             this.panelofPic.Controls.Add(this.label1);
             this.panelofPic.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -82,7 +84,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(919, 600);
+            this.pictureBox1.Size = new System.Drawing.Size(1319, 700);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;

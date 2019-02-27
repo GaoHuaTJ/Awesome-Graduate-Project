@@ -52,6 +52,7 @@ namespace 毕业设计
             foreach (var item in TableLineStartPoints)
             {
                 g.DrawLine(pen,item,TableLineEndPoints[index]);
+                g.DrawString(string.Format("{0}:00", (index + 1).ToString()),new Font("华文仿宋", 10, FontStyle.Regular),new SolidBrush(Color.Black),new PointF(item.X-5,item.Y-10));
                 index++;
             }
 
@@ -69,20 +70,18 @@ namespace 毕业设计
             Point newPoint = new Point();
             var _horizontalStep = (int)this.Width / 24;//横向步长
             var _verticalStep= (int)this.Height / 24;//纵向步长，分母为车站数
-            for (int i = 10; i <= 24; i++)//计算横向起点坐标集合
+            for (int i = 1; i <= 24; i++)//计算横向起点坐标集合
             {
                 newPoint.X = this.TrainBasicPicturePos.X + _horizontalStep*i;
                 newPoint.Y = this.TrainBasicPicturePos.Y;
                 TableLineStartPoints.Add(newPoint);
-                TableLineStartPoints.Add(newPoint);
             }
 
             TableLineEndPoints = new List<Point>();
-            for (int i = 10; i <= 24; i++)//计算横向终点坐标集合
+            for (int i = 1; i <= 24; i++)//计算横向终点坐标集合
             {
                 newPoint.X = this.TrainBasicPicturePos.X + _horizontalStep * i;
                 newPoint.Y = this.TrainBasicPicturePos.Y+(int)this.Height;
-                TableLineEndPoints.Add(newPoint);
                 TableLineEndPoints.Add(newPoint);
             }
 
