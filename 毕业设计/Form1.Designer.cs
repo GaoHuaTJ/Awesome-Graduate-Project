@@ -81,6 +81,7 @@
             this.生成2分格底图结构ToolStripMenuItem.Name = "生成2分格底图结构ToolStripMenuItem";
             this.生成2分格底图结构ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
             this.生成2分格底图结构ToolStripMenuItem.Text = "生成2分格底图结构";
+            this.生成2分格底图结构ToolStripMenuItem.Click += new System.EventHandler(this.生成2分格底图结构ToolStripMenuItem_Click);
             // 
             // panelofPic
             // 
@@ -103,7 +104,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1019, 700);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
