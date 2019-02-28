@@ -31,6 +31,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.底图结构ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.生成底图结构ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.生成5分格底图结构ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.生成2分格底图结构ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelofPic = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,7 +55,9 @@
             // 底图结构ToolStripMenuItem
             // 
             this.底图结构ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.生成底图结构ToolStripMenuItem});
+            this.生成底图结构ToolStripMenuItem,
+            this.生成5分格底图结构ToolStripMenuItem,
+            this.生成2分格底图结构ToolStripMenuItem});
             this.底图结构ToolStripMenuItem.Name = "底图结构ToolStripMenuItem";
             this.底图结构ToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
             this.底图结构ToolStripMenuItem.Text = "底图结构";
@@ -61,14 +65,27 @@
             // 生成底图结构ToolStripMenuItem
             // 
             this.生成底图结构ToolStripMenuItem.Name = "生成底图结构ToolStripMenuItem";
-            this.生成底图结构ToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
-            this.生成底图结构ToolStripMenuItem.Text = "生成底图结构";
+            this.生成底图结构ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.生成底图结构ToolStripMenuItem.Text = "生成10分格底图结构";
             this.生成底图结构ToolStripMenuItem.Click += new System.EventHandler(this.生成底图结构ToolStripMenuItem_Click_1);
+            // 
+            // 生成5分格底图结构ToolStripMenuItem
+            // 
+            this.生成5分格底图结构ToolStripMenuItem.Name = "生成5分格底图结构ToolStripMenuItem";
+            this.生成5分格底图结构ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.生成5分格底图结构ToolStripMenuItem.Text = "生成5分格底图结构";
+            this.生成5分格底图结构ToolStripMenuItem.Click += new System.EventHandler(this.生成5分格底图结构ToolStripMenuItem_Click);
+            // 
+            // 生成2分格底图结构ToolStripMenuItem
+            // 
+            this.生成2分格底图结构ToolStripMenuItem.Name = "生成2分格底图结构ToolStripMenuItem";
+            this.生成2分格底图结构ToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.生成2分格底图结构ToolStripMenuItem.Text = "生成2分格底图结构";
             // 
             // panelofPic
             // 
             this.panelofPic.AutoScroll = true;
-            this.panelofPic.AutoScrollMargin = new System.Drawing.Size(400, 100);
+            this.panelofPic.AutoScrollMargin = new System.Drawing.Size(100, 100);
             this.panelofPic.AutoScrollMinSize = new System.Drawing.Size(100, 100);
             this.panelofPic.Controls.Add(this.pictureBox1);
             this.panelofPic.Controls.Add(this.label1);
@@ -77,6 +94,7 @@
             this.panelofPic.Name = "panelofPic";
             this.panelofPic.Size = new System.Drawing.Size(902, 600);
             this.panelofPic.TabIndex = 5;
+            this.panelofPic.Scroll += new System.Windows.Forms.ScrollEventHandler(this.panelofPic_Scroll);
             this.panelofPic.Paint += new System.Windows.Forms.PaintEventHandler(this.panelofPic_Paint);
             // 
             // pictureBox1
@@ -84,7 +102,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1319, 700);
+            this.pictureBox1.Size = new System.Drawing.Size(1019, 700);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
@@ -127,6 +145,8 @@
         private System.Windows.Forms.Panel panelofPic;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem 生成5分格底图结构ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 生成2分格底图结构ToolStripMenuItem;
     }
 }
 

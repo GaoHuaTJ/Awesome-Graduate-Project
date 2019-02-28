@@ -22,19 +22,32 @@ namespace 毕业设计
         }
         Dictionary<int, string> Stations = new Dictionary<int, string>();//定义车站字典，key是车站的编号，string是车站的名字
 
-       public Bitmap DrawTrainBasicPicture()
+
+        //
+       public Bitmap DrawTrainBasicPicture(Scale scale)
         {
             //初始化底图结构的边框和格线
-          this.TrainBasicPictureBitMap =  DrawTrainBasicPictureBorderLine();
+            switch (scale)
+            {
+                case Scale.TenMinutes:
+                    this.TrainBasicPictureBitMap = DrawTrainBasicPictureBorderLine(10);
+                    break;
+                case Scale.FiveMinutes:
+                    this.TrainBasicPictureBitMap = DrawTrainBasicPictureBorderLine(5);
+                    break;
+                case Scale.TwoMinutes:
+                    this.TrainBasicPictureBitMap = DrawTrainBasicPictureBorderLine(2);
+                    break;
+            }
             //初始化边框中的格线
             return this.TrainBasicPictureBitMap;
         }
 
         /// <summary>
-        /// 绘制列车运行图的底图边框
+        /// 绘制列车运行图的底图边框，输入mins是时分格的大小10，5，2
         /// </summary>
         /// <param name="g"></param>
-        Bitmap DrawTrainBasicPictureBorderLine()
+        Bitmap DrawTrainBasicPictureBorderLine(int mins)
         {
 
             //绘制边框
@@ -60,16 +73,14 @@ namespace 毕业设计
             Pen lineMinutesPen = new Pen(Color.Green, 0.5f);//定义画笔线宽和颜色
             for (int i = 1; i <24; i++)//s每一个小时间隙
             {
-                var LineMinutesStartPoints = GetLineMinutesPoints(i, 10, out var LineMinutesEndPoints);
+                var LineMinutesStartPoints = GetLineMinutesPoints(i, mins, out var LineMinutesEndPoints);
                 index = 0;
-                foreach (var item in LineMinutesStartPoints)//每一条分钟线i
+                foreach (var item in LineMinutesStartPoints)//每一条分钟线
                 {
-                    g.DrawLine(lineMinutesPen, item, LineMinutesEndPoints[index]);
+                    g.DrawLine(lineMinutesPen, item, LineMinutesEndPoints[index]); 
                     index++;
                 }
             }
-            
-          
             return this.TrainBasicPictureBitMap;
         }
 
@@ -115,7 +126,6 @@ namespace 毕业设计
                 LineMinutesStartPoints.Add(new PointF(this.TrainBasicPicturePos.X + hourTime *((float)this.Width / 24) + _stepWidth * i, this.TrainBasicPicturePos.Y));
                 LineMinutesEndPoints.Add(new PointF(this.TrainBasicPicturePos.X + hourTime * ((float)this.Width / 24) + _stepWidth * i, this.TrainBasicPicturePos.Y+(float)this.Height));
             }
-
             return LineMinutesStartPoints;
         }
 
