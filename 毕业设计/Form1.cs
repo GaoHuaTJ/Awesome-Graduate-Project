@@ -15,6 +15,10 @@ namespace 毕业设计
         public Form1()
         {
             InitializeComponent();
+            foreach (Control control in this.Controls)
+            {
+                control.Font = new Font("微软雅黑", 12);
+            }
         }
         public void Form1_Load(object sender, EventArgs e)
         {

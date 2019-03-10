@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
+
+namespace 毕业设计
+{
+    public partial class NewProject : Form
+    {
+        public NewProject()
+        {
+            InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;//窗体居中
+            this.ProjectNametextBox.Text = "新建项目";
+            string strDesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);//获取桌面路径
+            this.LocationOfProjectTextBox.Text = strDesktopPath;//默认的新建项目路径为桌面路径
+        }
+
+        
+
+        /// <summary>
+        /// 路径旁边的浏览按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BrowserButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();//选择项目的新建项目路径
+            folderBrowserDialog.SelectedPath = this.LocationOfProjectTextBox.Text;//路径浏览器的初始定位
+            folderBrowserDialog.ShowDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                //如果返回值为确定的话
+                this.LocationOfProjectTextBox.Text = folderBrowserDialog.SelectedPath;//路径文本框为选定的路径
+            }
+        }
+
+        /// <summary>
+        /// 确定新建项目名称及路径
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OKBtn_Click(object sender, EventArgs e)
+        {
+            //如果点击确定的话，新建文件夹
+            var _newProjectFolder=Path.Combine(this.LocationOfProjectTextBox.Text,this.ProjectNametextBox.Text);//创建一个新的地址
+            if (Directory.Exists(_newProjectFolder))
+            {
+                MessageBox.Show(string.Format("项目   {0}   已存在\n请更换项目名称", _newProjectFolder),"提示" );
+            }
+            else
+            {
+                Directory.CreateDirectory(_newProjectFolder);//创建当前文件夹
+            }
+        }
+
+        /// <summary>
+        /// 取消按钮，关闭当前窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}
