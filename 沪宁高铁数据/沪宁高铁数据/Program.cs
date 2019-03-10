@@ -16,20 +16,20 @@ namespace 沪宁高铁数据
     {
         static void Main(string[] args)
         {
-            DateTime dateTime = DateTime.Now;
+            DateTime dateTime = DateTime.Now.AddDays(3);
 
-            string pathTrainNoTable = GetTrainInfo(dateTime.ToString("yyyy-MM-dd"), "SHH", "NJH"); //进行抓取列车的车次及车票信息并存储
+            string pathTrainNoTable = GetTrainInfo(dateTime.ToString("yyyy-MM-dd"), "SHH", "NJH"); //进行抓取列车的车次及车票信息并存储,沪宁高铁只有两个一个是SHH-BJP，一个是SHH-NJH
+            Console.WriteLine("车票信息存储完毕");
+            List<string> trainNoLists = ReadExcelTrainNo(pathTrainNoTable, out List<string> trainStartStationLists,out List<string> trainEndStationLists);
 
-            List<string> trainNoLists = ReadExcelTrainNo(pathTrainNoTable, out List<string> TrainStartStationLists);//沪宁高铁只有两个一个是SHH-BJP，一个是SHH-NJH
 
 
-
-            var url = string.Format("https://kyfw.12306.cn/otn/czxx/queryByTrainNo?train_no={0}&from_station_telecode={1}&to_station_telecode={2}&depart_date={3}",trainNoLists[0],TrainStartStationLists[0],"NJH", dateTime.ToString("yyyy-MM-dd"));//此处的到站只有NJH和NKH
-
+            var url = string.Format("https://kyfw.12306.cn/otn/czxx/queryByTrainNo?train_no={0}&from_station_telecode={1}&to_station_telecode={2}&depart_date={3}",trainNoLists[0],trainStartStationLists[0], trainEndStationLists[0], dateTime.ToString("yyyy-MM-dd"));//此处的到站只有NJH和NKH
            JArray jArray = GetUrlJson(url);//发送请求返回json的jarray数据
             DataTable dataTable = CreateTrainTimeDataTable(jArray);
             var trainTimeTableExcel= Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + string.Format("\\trainTime_{0}.xlsx", DateTime.Now.ToString("yyyyMMddhhmmss"));//桌面上生成数据文件
             Excel.TableToExcel(dataTable, trainTimeTableExcel);
+            Console.WriteLine(string.Format("{0}车次信息存储完毕",trainNoLists[0]));
             Console.ReadKey();
         }
 
@@ -99,6 +99,10 @@ namespace 沪宁高铁数据
             }
             return jArray;
         }
+        /// <summary>
+        /// 创建一个列车的车票信息的表
+        /// </summary>
+        /// <returns></returns>
         public static DataTable CreateTrainInfoDataTable()
         {
             DataTable dataTable = new DataTable();
@@ -108,7 +112,7 @@ namespace 沪宁高铁数据
             dataTable.Columns.Add("出发站");
             dataTable.Columns.Add("终点站");
             dataTable.Columns.Add("途经上海站");
-            dataTable.Columns.Add("途经北京站");
+            dataTable.Columns.Add("途经南京站");
             dataTable.Columns.Add("出发时间");
             dataTable.Columns.Add("到达时间");
             dataTable.Columns.Add("历时");
@@ -183,24 +187,28 @@ namespace 沪宁高铁数据
         }
         /// <summary>
         /// 输入包含TrainNo字段的excel路径，返回TrainNos的列表
+        /// 返回上海的火车站代码，南京的火车站代码
         /// </summary>
         /// <param name="trainInfoExcelPath"></param>
         /// <returns></returns>
-        public static List<string> ReadExcelTrainNo(string trainInfoExcelPath,out List<string> trainStartStationLists)
+        public static List<string> ReadExcelTrainNo(string trainInfoExcelPath, out List<string> trainStartStationLists, out List<string> trainEndStationLists)
         {
 
             trainStartStationLists = new List<string>();//需要重新分配空间
-            var dataTable= Excel.ExcelToTable(trainInfoExcelPath);
+            trainEndStationLists = new List<string>();//需要重新分配空间
+
+
+            var dataTable = Excel.ExcelToTable(trainInfoExcelPath);
             List<string> TrainNoLists = new List<string>();
             foreach (DataRow dataRow in dataTable.Rows)
             {
                 TrainNoLists.Add(dataRow["TrainNo"].ToString());
                 trainStartStationLists.Add(dataRow["途经上海站"].ToString());
+                trainEndStationLists.Add(dataRow["途经南京站"].ToString());
+
             }
             return TrainNoLists;
         }
-
-
         /// <summary>
         /// 创建一个时刻表的datatable，并解析时刻表的json
         /// </summary>
