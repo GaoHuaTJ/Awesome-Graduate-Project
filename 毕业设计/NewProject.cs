@@ -33,7 +33,6 @@ namespace 毕业设计
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();//选择项目的新建项目路径
             folderBrowserDialog.SelectedPath = this.LocationOfProjectTextBox.Text;//路径浏览器的初始定位
-            folderBrowserDialog.ShowDialog();
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 //如果返回值为确定的话

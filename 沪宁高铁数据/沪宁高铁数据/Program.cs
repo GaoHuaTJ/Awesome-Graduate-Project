@@ -18,17 +18,18 @@ namespace 沪宁高铁数据
         {
             DateTime dateTime = DateTime.Now;
 
-            //进行抓取列车的车次及车票信息
-            List<string> trainNoLists = ReadExcelTrainNo(GetTrainInfo(dateTime.ToString("yyyy-MM-dd"), "SHH", "NJH"), out List<string> TrainStartStationLists);//注沪宁高铁只有两个一个是SHH-BJP，一个是SHH-NJH
+            string pathTrainNoTable = GetTrainInfo(dateTime.ToString("yyyy-MM-dd"), "SHH", "NJH"); //进行抓取列车的车次及车票信息并存储
+
+            List<string> trainNoLists = ReadExcelTrainNo(pathTrainNoTable, out List<string> TrainStartStationLists);//沪宁高铁只有两个一个是SHH-BJP，一个是SHH-NJH
 
 
 
             var url = string.Format("https://kyfw.12306.cn/otn/czxx/queryByTrainNo?train_no={0}&from_station_telecode={1}&to_station_telecode={2}&depart_date={3}",trainNoLists[0],TrainStartStationLists[0],"NJH", dateTime.ToString("yyyy-MM-dd"));//此处的到站只有NJH和NKH
-            Console.WriteLine(url);
+
            JArray jArray = GetUrlJson(url);//发送请求返回json的jarray数据
             DataTable dataTable = CreateTrainTimeDataTable(jArray);
-            var file = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + string.Format("\\trainTime_{0}.xlsx", DateTime.Now.ToString("yyyyMMddhhmmss"));//桌面上生成数据文件
-            Excel.TableToExcel(dataTable, file);
+            var trainTimeTableExcel= Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + string.Format("\\trainTime_{0}.xlsx", DateTime.Now.ToString("yyyyMMddhhmmss"));//桌面上生成数据文件
+            Excel.TableToExcel(dataTable, trainTimeTableExcel);
             Console.ReadKey();
         }
 
@@ -48,7 +49,6 @@ namespace 沪宁高铁数据
             DataTable TrainsTable = Json2TrainInfoDatable(jArray);
             var file = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) +string.Format("\\train_{0}_{1}_{2}.xlsx",DateTime.Now.ToString("yyyyMMddhhmmss"),from_station,to_station) ;//桌面上生成数据文件
             Excel.TableToExcel(TrainsTable, file);
-            Console.WriteLine("数据保存完成");
             return file;
         }
         /// <summary>
