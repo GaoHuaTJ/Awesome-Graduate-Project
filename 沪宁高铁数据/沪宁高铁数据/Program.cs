@@ -28,7 +28,6 @@ namespace 沪宁高铁数据
             TrainTimeTable trainTimeTable = new TrainTimeTable(trainNoLists[0], trainStartStationLists[0], trainEndStationLists[0], trainsTickets.SelectDateTime);
             trainTimeTable.CreateTrainTimeDataTable();
             Console.WriteLine(string.Format("车次{0}时刻表信息存储完毕\n-------------------------------------------------------------------------------------------------------",trainTimeTable.trainNo));
-
             Console.ReadKey();
         }
     }
