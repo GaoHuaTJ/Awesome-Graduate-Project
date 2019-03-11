@@ -14,7 +14,7 @@ namespace 沪宁高铁数据
 {
     class TrainsTickets
     {
-        public DateTime SelectDateTime { get; set; } //查询时间
+        public DateTime SelectDateTime { get; set; } = DateTime.Now;//查询时间,如果没有赋值的话，为此刻
         public string FromStation { get; set; }//出发的上海站点
         public string ToStation { get; set; }//到达的南京站点
         public string TrainsTicketsExcelPath { get; set; }
@@ -67,24 +67,25 @@ namespace 沪宁高铁数据
             }
             return jArray;
         }
+
         /// <summary>
-        /// 输入的是查询的日期，起点站代码终点站代码，输出桌面excel
+        /// 入口函数，输出保存的excel地址
         /// </summary>
-        /// <param name="date_time"></param>
-        /// <param name="from_station"></param>
-        /// <param name="to_station"></param>
+        /// <returns></returns>
         public  string GetTrainInfo()
         {
             string date_time = SelectDateTime.ToString("yyyy-MM-dd");
             string url = string.Format("https://kyfw.12306.cn/otn/leftTicket/queryX?leftTicketDTO.train_date={0}&leftTicketDTO.from_station={1}&leftTicketDTO.to_station={2}&purpose_codes=ADULT", date_time, this.FromStation, this.ToStation);
             JArray jArray = GetUrlJson(url);//发送请求返回json的jarray数据
             DataTable TrainsTable = Json2TrainInfoDatable(jArray);
-            var file = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + string.Format("\\train_{0}_{1}_{2}.xlsx", DateTime.Now.ToString("yyyyMMddhhmmss"), this.FromStation, this, ToStation);//桌面上生成数据文件
+            var file = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + string.Format("\\train_{0}_{1}_{2}.xlsx", DateTime.Now.ToString("yyyyMMddhhmmss"), this.FromStation, this.ToStation);//桌面上生成数据文件
             if (this.TrainsTicketsExcelPath == null)
             {
                 this.TrainsTicketsExcelPath = file;//存储输出的excel路径
             }
             Excel.TableToExcel(TrainsTable, file);
+
+            Console.WriteLine(string.Format("列车车票信息存储完毕，Excel地址为\n:{0}\n", TrainsTicketsExcelPath));
             return file;
         }
         /// <summary>
