@@ -85,7 +85,7 @@ namespace 沪宁高铁数据
             }
             Excel.TableToExcel(TrainsTable, file);
 
-            Console.WriteLine(string.Format("列车车票信息存储完毕，Excel地址为\n:{0}\n", TrainsTicketsExcelPath));
+            Console.WriteLine(string.Format("列车车票信息存储完毕，Excel地址为:\n{0}\n", TrainsTicketsExcelPath));
             return file;
         }
         /// <summary>

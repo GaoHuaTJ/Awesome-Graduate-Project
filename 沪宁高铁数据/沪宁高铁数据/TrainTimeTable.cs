@@ -27,13 +27,7 @@ namespace 沪宁高铁数据
             trainNo = _trainNo;
             fromStation = _fromStation;
             endStation = _endStation;
-
         }
-
-
-
-
-
 
 /// <summary>
 /// 输出具体车次时刻表的datatable。输出其excel，默认地址为桌面
@@ -42,7 +36,8 @@ namespace 沪宁高铁数据
         public  DataTable CreateTrainTimeDataTable()
         {
             JArray jArray=TrainsTickets.GetUrlJson(trainTimeTableUrl);
-            DataTable dataTable = new DataTable(jArray[0]["station_train_code"].ToString());//表名为
+            DataTable dataTable = new DataTable(jArray[0]["station_train_code"].ToString());//表名为列车编号，这里需要注意的是json返回的数据结构、
+            dataTable.Columns.Add("车次");
             dataTable.Columns.Add("站序");
             dataTable.Columns.Add("站名");
             dataTable.Columns.Add("到站时间");
@@ -53,6 +48,7 @@ namespace 沪宁高铁数据
             foreach (var item in jArray)
             {
                 DataRow dataRow = dataTable.NewRow();//新创建一行
+                dataRow["车次"] = jArray[0]["station_train_code"].ToString();//注意这里的车次号和trainNo是不一样的，trainNo是580000K5260E
                 dataRow["站序"] = item["station_no"];
                 dataRow["站名"] = item["station_name"];
                 dataRow["到站时间"] = item["arrive_time"];
