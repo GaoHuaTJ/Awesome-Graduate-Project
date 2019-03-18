@@ -24,10 +24,10 @@ namespace 毕业设计
 
         private void 运行图绘制ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 TrainPictureFrom = new Form1();
-            TrainPictureFrom.TopLevel = false;//非常重要的一个步骤
-            TrainPictureFrom.Parent = this;//设置绘图界面的窗口父窗口为当前窗口
-            TrainPictureFrom.Show();
+            Form1 trainPictureFrom = new Form1 {TopLevel = false, Parent = this};
+            //非常重要的一个步骤
+            //设置绘图界面的窗口父窗口为当前窗口
+            trainPictureFrom.Show();
 
         }
 
@@ -43,14 +43,14 @@ namespace 毕业设计
 
         private void 打开已有项目ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);//获取桌面路径
-            //folderBrowserDialog.ShowDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
             {
-                Directory.SetCurrentDirectory(folderBrowserDialog.SelectedPath);//设置当前的工作目录
-                MessageBox.Show(string.Format("当前的工作目录为   {0}", folderBrowserDialog.SelectedPath));
-            }
+                SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
+            };
+            //获取桌面路径
+            if (folderBrowserDialog.ShowDialog() != DialogResult.OK) return;
+            Directory.SetCurrentDirectory(folderBrowserDialog.SelectedPath);//设置当前的工作目录
+            MessageBox.Show($@"当前的工作目录为   {folderBrowserDialog.SelectedPath}");
         }
     }
 }

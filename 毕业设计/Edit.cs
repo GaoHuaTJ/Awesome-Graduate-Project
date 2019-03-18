@@ -14,8 +14,8 @@ namespace 毕业设计
         /// <summary>
         /// 画线编辑
         /// </summary>
-        /// <param name="line"></param>
-        /// <param name="graphics"></param>
+        /// <param name="line">线实例</param>
+        /// <param name="graphics">图实例</param>
        public static void DrawLine(Line line, Graphics graphics)
         {
             Pen pen = new Pen(line.Color,line.Width);//定义画笔颜色

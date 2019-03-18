@@ -31,8 +31,11 @@ namespace 毕业设计
         /// <param name="e"></param>
         private void BrowserButton_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();//选择项目的新建项目路径
-            folderBrowserDialog.SelectedPath = this.LocationOfProjectTextBox.Text;//路径浏览器的初始定位
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
+            {
+                SelectedPath = this.LocationOfProjectTextBox.Text
+            }; //选择项目的新建项目路径
+            //路径浏览器的初始定位
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 //如果返回值为确定的话
