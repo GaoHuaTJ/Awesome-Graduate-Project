@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace 毕业设计
 {
@@ -21,8 +14,6 @@ namespace 毕业设计
             string strDesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);//获取桌面路径
             this.LocationOfProjectTextBox.Text = strDesktopPath;//默认的新建项目路径为桌面路径
         }
-
-        
 
         /// <summary>
         /// 路径旁边的浏览按钮
@@ -51,14 +42,14 @@ namespace 毕业设计
         private void OKBtn_Click(object sender, EventArgs e)
         {
             //如果点击确定的话，新建文件夹
-            var _newProjectFolder=Path.Combine(this.LocationOfProjectTextBox.Text,this.ProjectNametextBox.Text);//创建一个新的地址
-            if (Directory.Exists(_newProjectFolder))
+            var newProjectFolder = Path.Combine(this.LocationOfProjectTextBox.Text, this.ProjectNametextBox.Text);//创建一个新的地址
+            if (Directory.Exists(newProjectFolder))
             {
-                MessageBox.Show(string.Format("项目   {0}   已存在\n请更换项目名称", _newProjectFolder),"提示" );
+                MessageBox.Show($"项目   {newProjectFolder}   已存在请更换项目名称", "提示");
             }
             else
             {
-                Directory.CreateDirectory(_newProjectFolder);//创建当前文件夹
+                Directory.CreateDirectory(newProjectFolder);//创建当前文件夹
             }
         }
 

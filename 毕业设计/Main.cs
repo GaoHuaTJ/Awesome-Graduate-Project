@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace 毕业设计
 {
@@ -24,15 +18,11 @@ namespace 毕业设计
 
         private void 运行图绘制ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 trainPictureFrom = new Form1 {TopLevel = false, Parent = this};
+            Form1 trainPictureFrom = new Form1 { TopLevel = false, Parent = this };
             //非常重要的一个步骤
             //设置绘图界面的窗口父窗口为当前窗口
             trainPictureFrom.Show();
-
         }
-
-
-
 
         private void 新建项目ToolStripMenuItem_Click(object sender, EventArgs e)
         {
